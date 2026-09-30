@@ -1,0 +1,11 @@
+{
+    "name": "Sooraj",
+    "email": "sooraja@example.com",
+    "role": "Django Developer",
+    "skills": [
+        "Python",
+        "Django",
+        "HTML",
+        "CSS"
+    ]
+}

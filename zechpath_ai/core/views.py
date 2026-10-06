@@ -1,22 +1,23 @@
 from django.http import JsonResponse
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import User, Job
-from .serializers import UserSerializer, JobSerializer
+from .models import Job, User
+from .serializers import JobSerializer, UserSerializer
 
 
-# Home API
 def home(request):
+    """Return the basic Zecpath backend welcome message."""
     return JsonResponse({
         "message": "Hello Zecpath Backend"
     })
 
 
-# Job List API
 class JobListAPI(APIView):
+    """API for retrieving all jobs."""
+
     def get(self, request):
         jobs = Job.objects.all()
         serializer = JobSerializer(jobs, many=True)
@@ -27,8 +28,9 @@ class JobListAPI(APIView):
         )
 
 
-# Job Create API
 class JobCreateAPI(APIView):
+    """API for creating a new job."""
+
     def post(self, request):
         serializer = JobSerializer(data=request.data)
 
@@ -46,8 +48,9 @@ class JobCreateAPI(APIView):
         )
 
 
-# User Test API
 class UserTestAPI(APIView):
+    """API for retrieving all users."""
+
     def get(self, request):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
